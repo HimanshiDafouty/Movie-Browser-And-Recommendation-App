@@ -1,12 +1,12 @@
 import React, {useRef, useState } from 'react'
 import Header from './Header';
 import { validate } from '../utils/validate';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const [isSignInForm , setIsSignInForm] = useState(true);
   const [errorMsg , setErrorMsg] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   
   const email = useRef(null);
@@ -25,56 +25,56 @@ const LogIn = () => {
    return;
    }
 
-   if(!isSignInForm){
-    //Sign Up Logic
-    createUserWithEmailAndPassword(
-      auth
-    , email.current.value 
-    , password.current.value)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    updateProfile(user, {
-      displayName: name.current.value, photoURL: 'https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp',
-    }).then(() => {
-      // Profile updated!
-      // ...
-      // navigate("/browse");
-    }).catch((error) => {
-      // An error occurred
-      // ...
-      setErrorMsg(error.message)
-    });
+  //  if(!isSignInForm){
+  //   //Sign Up Logic
+  //   createUserWithEmailAndPassword(
+  //     auth
+  //   , email.current.value 
+  //   , password.current.value)
+  // .then((userCredential) => {
+  //   // Signed up 
+  //   const user = userCredential.user;
+  //   updateProfile(user, {
+  //     displayName: name.current.value, photoURL: 'https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp',
+  //   }).then(() => {
+  //     // Profile updated!
+  //     // ...
+  //     // navigate("/browse");
+  //   }).catch((error) => {
+  //     // An error occurred
+  //     // ...
+  //     setErrorMsg(error.message)
+  //   });
 
     
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMsg(errorCode+ '-' + errorMessage);
-    // ..
-  });
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   setErrorMsg(errorCode+ '-' + errorMessage);
+  //   // ..
+  // });
     
 
-   }
-   else{
-    //Sign In Logic
+  //  }
+  //  else{
+  //   //Sign In Logic
 
-    signInWithEmailAndPassword(auth,email.current.value , password.current.value)
-  .then((userCredential) => {
-    // Signed in 
-    // const user = userCredential.user;
+  //   signInWithEmailAndPassword(auth,email.current.value , password.current.value)
+  // .then((userCredential) => {
+  //   // Signed in 
+  //   // const user = userCredential.user;
     
-    navigate("/browse");
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    setErrorMsg(errorCode + "-" + errorMessage);
-  });
+  //   navigate("/browse");
+  //   // ...
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   setErrorMsg(errorCode + "-" + errorMessage);
+  // });
 
-   }
+  //  }
     
 
    
