@@ -1,5 +1,6 @@
 import React, {useRef, useState } from 'react'
 import Header from './Header';
+import { validate } from '../utils/validate';
 import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
@@ -14,9 +15,10 @@ const LogIn = () => {
 
 
   const handleButtonClick = (e) =>{
+    //validate the form data
     e.preventDefault();
    
-    const msg = validate(email.current.value , password.current.value);
+    const msg = validate(email.current.value , password.current.value , !isSignInForm ? name.current.value : null);
    setErrorMsg(msg);
 
    if(msg){
