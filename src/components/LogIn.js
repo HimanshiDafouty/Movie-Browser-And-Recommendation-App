@@ -41,6 +41,9 @@ const LogIn = () => {
     updateProfile(user, {
       displayName: name.current.value, photoURL: 'https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp',
     }).then(() => {
+      setIsSignInForm(true);
+      setErrorMsg("Account created successfully. Please sign in.");
+
       // Profile updated!
       // ...
       // navigate("/browse");
@@ -93,7 +96,7 @@ const LogIn = () => {
   return (
     <div>
       <Header />
-      <img className='absolute h-screen w-screen  object-cover' src='https://assets.nflxext.com/ffe/siteui/vlv3/03ad76d1-e184-4d99-ae7d-708672fa1ac2/web/IN-en-20241111-TRIFECTA-perspective_149877ab-fcbd-4e4f-a885-8d6174a1ee81_medium.jpg' alt='background'/>
+      <img className='absolute h-screen w-screen  object-cover' src='https://analyticsindiamag.com/wp-content/uploads/2019/05/apps.55787.9007199266246365.687a10a8-4c4a-4a47-8ec5-a95f70d8852d.jpg' alt='background'/>
       <div className='w-full h-full bg-black opacity-50 absolute left-0 top-0'></div>
       <form onSubmit={(e) => e.preventDefault()} className='absolute flex flex-col px-10 py-10 sm:w-1/2 md:w-1/2 lg:w-3/12 text-white bg-black bg-opacity-75 rounded-md left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]'>
        
@@ -106,7 +109,7 @@ const LogIn = () => {
         <p className='text-red-500'>{errorMsg}</p>
         <button onClick={handleButtonClick} className='md:p-4 p-2 my-2 mt-7 md:text-lg text-sm bg-red-600 rounded-md  text-white'>{isSignInForm ? "Sign In" : "Sign Up"}</button>
 
-        <p className='mt-3'>{isSignInForm ? "New to Netflix?" : "Already User?"} <span ><a href='/' className='font-bold' onClick={toggleSignInForm}>{isSignInForm ? "Sign Up Now." : "Sign In Now."} </a></span> </p>
+        <p className='mt-3'>{isSignInForm ? "New User?" : "Already User?"} <span ><a href='/' className='font-bold' onClick={toggleSignInForm}>{isSignInForm ? "Sign Up Now." : "Sign In Now."} </a></span> </p>
       
         </form>
       
