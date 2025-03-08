@@ -5,11 +5,14 @@ import {  createUserWithEmailAndPassword , signInWithEmailAndPassword } from "fi
 import {auth} from "../utils/firebase";
 import { useNavigate } from 'react-router-dom';
 import {  updateProfile } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { addUser } from "../utils/userSlice";
 
 const LogIn = () => {
   const [isSignInForm , setIsSignInForm] = useState(true);
   const [errorMsg , setErrorMsg] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   
   const email = useRef(null);
@@ -41,12 +44,21 @@ const LogIn = () => {
     updateProfile(user, {
       displayName: name.current.value, photoURL: 'https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp',
     }).then(() => {
-      setIsSignInForm(true);
-      setErrorMsg("Account created successfully. Please sign in.");
+      const { uid, email, displayName, photoURL } = auth.currentUser;
+      dispatch(
+        addUser({
+          uid: uid,
+          email: email,
+          displayName: displayName,
+          photoURL: photoURL,
+        })
+      );
+      // setIsSignInForm(true);
+      // setErrorMsg("Account created successfully. Please sign in.");
 
       // Profile updated!
       // ...
-      // navigate("/browse");
+      navigate("/browse");
     }).catch((error) => {
       // An error occurred
       // ...
