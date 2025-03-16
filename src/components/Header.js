@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import LOGO from "../../src/file.png";
 import { USER_AVATAR } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const showGptSearch = useSelector((store) => store.showGptSearch);
   const user = useSelector((store) => store.user);
   const [isScrolled, setIsScrolled] = useState(false);
   // Sign Out function
@@ -69,16 +71,23 @@ const Header = () => {
   }, []);
 
   const handleGptSearchClick = () => {
-    // dispatch(toggleGptSearchView());
+    dispatch(toggleGptSearchView());
   };
   return (
-    <div className={`w-screen px-8 py-2 z-50 flex flex-col md:flex-row justify-between transition-all duration-300 fixed ${
-      isScrolled ? "bg-black" : "bg-gradient-to-b from-black"
-    }`}>
+    <div
+      className={`w-screen px-8 py-2 z-50 flex flex-col md:flex-row justify-between transition-all duration-300 fixed ${
+        isScrolled ? "bg-black" : "bg-gradient-to-b from-black"
+      }`}
+    >
       <img className="w-48 z-40 md:mx-0 mx-auto" src={LOGO} alt="logo" />
       {user && (
         <div className=" flex align-center justify-center gap-2 px-8 pt-6 ">
-          {/* <button onClick={handleGptSearchClick} className='text-white mb-4 font-bold px-2 py-2 rounded-md bg-opacity-45  hover:bg-opacity-85 transform transition-all duration-600 bg-purple-500 mr-3'>{showGptSearch ? "Home" : "GPT Search"}</button> */}
+          <button
+            onClick={handleGptSearchClick}
+            className="text-white mb-4 font-bold px-2 py-2 rounded-md bg-opacity-45  hover:bg-opacity-85 transform transition-all duration-600 bg-gradient-to-r from-blue-500 to-purple-500 mr-3"
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
           <img
             alt="usericon"
             className="w-10 h-10 rounded-sm  z-60"
