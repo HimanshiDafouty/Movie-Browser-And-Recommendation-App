@@ -11,7 +11,9 @@ import { toggleGptSearchView } from "../utils/gptSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const showGptSearch = useSelector((store) => store.showGptSearch);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
+
   const user = useSelector((store) => store.user);
   const [isScrolled, setIsScrolled] = useState(false);
   // Sign Out function
@@ -70,9 +72,9 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleGptSearchClick = () => {
+  const handleGptSearchClick =() =>{
     dispatch(toggleGptSearchView());
-  };
+  }
   return (
     <div
       className={`w-screen px-8 py-2 z-50 flex flex-col md:flex-row justify-between transition-all duration-300 fixed ${
