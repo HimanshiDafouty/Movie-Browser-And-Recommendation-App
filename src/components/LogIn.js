@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {  updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from '../utils/constants';
 
 const LogIn = () => {
   const [isSignInForm , setIsSignInForm] = useState(true);
@@ -42,7 +43,7 @@ const LogIn = () => {
     // Signed up 
     const user = userCredential.user;
     updateProfile(user, {
-      displayName: name.current.value, photoURL: 'https://wallpapers.com/images/thumbnail/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp',
+      displayName: name.current.value, photoURL: USER_AVATAR,
     }).then(() => {
       const { uid, email, displayName, photoURL } = auth.currentUser;
       dispatch(
