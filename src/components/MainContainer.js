@@ -1,30 +1,30 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import VideoTitle from './VideoTitle';
-import VideoBackground from './VideoBackground';
+import React from "react";
+import { useSelector } from "react-redux";
+import VideoTitle from "./VideoTitle";
+import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
-    const movie = useSelector((store)=> store.movie?.nowPlayingMovies);
-    
-    if(!movie)return;
+  const movie = useSelector((store) => store.movie?.nowPlayingMovies);
 
-    const mainMovie = movie[0];
-    
-    JSON.stringify(mainMovie);
+  if (!movie || movie.length === 0) return null;
 
-    const {original_title, overview , id} = mainMovie;
-    
-    
+  const mainMovie = movie[0];
 
+  JSON.stringify(mainMovie);
 
+  const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className='-z-10 md:pt-0 pt-[30%] bg-black' >
-        
-      <VideoTitle title={original_title} overview={overview}  />
-      <VideoBackground movieId ={id}/> 
+    <div className="relative w-screen bg-black">
+      {/* Background Video */}
+      <VideoBackground movieId={id} />
+
+      {/* Title & Description */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black">
+        <VideoTitle title={original_title} overview={overview} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default MainContainer;
