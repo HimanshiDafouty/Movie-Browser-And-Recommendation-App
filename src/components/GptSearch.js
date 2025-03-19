@@ -3,9 +3,10 @@ import { useRef } from "react";
 import { OPTIONS } from "../utils/constants";
 
 import { useDispatch } from "react-redux";
-import { addGptMovieResult } from "../utils/gptSlice";
 import GPT_BG from "../showly.png";
-import openai from "../utils/openai";
+import groq from "../utils/openai";
+import { addGptMovieResult } from "../utils/gptSlice";
+// import openai from "../utils/openai";
 
 const GptSearch = () => {
   const searchText = useRef(null);
@@ -13,61 +14,61 @@ const GptSearch = () => {
 
   //search movies in TMDB
   const searchMovieTMDB = async (movie) => {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/search/movie?query=" +
-          movie +
-          "&include_adult=false&language=en-US&page=1",
+    let data;
+    try {
+      data = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${movie.trim()}&include_adult=false&language=hi&sort_by=popularity.desc&page=1`,
         OPTIONS
       );
-      const json = await data.json();
-      return json.results;
+    } catch {
+      console.log("fetch error");
+      return;
+    }
+    const json = await data.json();
+    return json.results;
   };
-  // async function getGroqChatCompletion() {
-
-  //   return groq.chat.completions.create({
-  //     messages: [
-  //       {
-  //         role: "user",
-  //         content: gptQuery,
-  //       },
-  //     ],
-  //     model: "llama3-8b-8192",
-  //   });
-  
+  async function getGroqChatCompletion() {
+    const gptQuery =
+      "Act as a like movie recommendation system and suggest some  modern hindi movies for the query " +
+      searchText.current.value +
+      ". only give me the names of top 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmal,Koi mil gaya only give movies name on further text present in it dont give first sentence also only names.";
+    return groq.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: gptQuery,
+        },
+      ],
+      model: "mixtral-8x7b-32768",
+    });
+  }
   const handleSearchClick = async () => {
     console.log(searchText.current.value);
-    
-    const gptQuery =
-    "Act as a like movie recommendation system and suggest some hindi movies for the query " +
-    searchText.current.value +
-    ". only give me the names of top 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmal,Koi mil gaya only give movies name on further text present in it dont give first sentence also only names.";
-    const gptResults = await openai.chat.completions.create({
-      messages :[{
-        role: "user",
-        content: searchText.current.value
-      }],
-      model: "gpt-3.5-turbo",
-    });
-    console.log(gptResults.choices);
-  
-  
-    // const chatCompletion = await getGroqChatCompletion();
-     // Print the completion returned by the LLM.
-     if (!gptResults.choices) {
+    // Make an API call to get the movie results
+    const chatCompletion = await getGroqChatCompletion();
+    // Print the completion returned by the LLM.
+    if (!chatCompletion.choices) {
+      return;
     }
-    console.log(gptResults.choices[0]?.message?.content);
-    const gptMovies = gptResults.choices[0]?.message?.content.split(",");
-  
+    console.log(chatCompletion.choices?.[0]?.message?.content);
+    const gptMovies = chatCompletion.choices?.[0]?.message?.content.split(",");
+
     //for each movie i will search tmdb api
 
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
 
     const tmdbResults = await Promise.all(promiseArray);
     console.log(tmdbResults);
-    
+
+    // const movieNames = tmdbResults.flat().filter((movie) => movie && movie.title).map((movie) => movie.title);
+    // console.log(movieNames); // Output the cleaned movie names array
+
+    // dispatch(
+    //   addGptMovieResult({movieNames , movieResults: tmdbResults})
+    // );
     dispatch(addGptMovieResult({movieNames:gptMovies,movieResults: tmdbResults}));
   };
-  
+
   return (
     <div className="w-screen overflow-x-clip">
       <div className="pointer-events-none">
@@ -97,6 +98,5 @@ const GptSearch = () => {
     </div>
   );
 };
-
 
 export default GptSearch;

@@ -1,13 +1,16 @@
 import React from 'react';
 import GptSearch from './GptSearch';
-import GptSuggestion from "./GptSuggestion";
+import GptSuggestions from './GptSuggestions';
+
 
 
 const GptSearchMain = () => {
+  console.log("📌 Rendering GptSearchMain Component")
   return (
     <div>
         <GptSearch />
-        <GptSuggestion />
+        <GptSuggestions />
+        
       
     </div>
   )
