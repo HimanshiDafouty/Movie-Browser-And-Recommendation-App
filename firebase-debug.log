@@ -1,0 +1,79 @@
+[debug] [2025-03-24T04:42:39.532Z] ----------------------------------------------------------------------
+[debug] [2025-03-24T04:42:39.535Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hp\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-03-24T04:42:39.536Z] CLI Version:   13.35.1
+[debug] [2025-03-24T04:42:39.536Z] Platform:      win32
+[debug] [2025-03-24T04:42:39.536Z] Node Version:  v20.10.0
+[debug] [2025-03-24T04:42:39.536Z] Time:          Mon Mar 24 2025 10:12:39 GMT+0530 (India Standard Time)
+[debug] [2025-03-24T04:42:39.536Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-24T04:42:39.798Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-24T04:42:39.798Z] > authorizing via signed-in user (riyadafouty755201@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\PROJECTS\Showly
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-03-24T04:44:17.946Z] Using project from CLI flag: netflix-gpt-5aba2
+[debug] [2025-03-24T04:44:17.948Z] Checked if tokens are valid: false, expires at: 1740984480625
+[debug] [2025-03-24T04:44:17.948Z] Checked if tokens are valid: false, expires at: 1740984480625
+[debug] [2025-03-24T04:44:17.948Z] > refreshing access token with scopes: []
+[debug] [2025-03-24T04:44:17.950Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-03-24T04:44:17.950Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-03-24T04:44:18.813Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-03-24T04:44:18.813Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-03-24T04:44:18.820Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/netflix-gpt-5aba2 [none]
+[debug] [2025-03-24T04:44:22.658Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/netflix-gpt-5aba2 200
+[debug] [2025-03-24T04:44:22.659Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/netflix-gpt-5aba2 {"projectId":"netflix-gpt-5aba2","projectNumber":"1006029255978","displayName":"netflix-gpt","name":"projects/netflix-gpt-5aba2","resources":{"hostingSite":"netflix-gpt-5aba2"},"state":"ACTIVE","etag":"1_5b6c82fe-9b7e-4392-84eb-72fbe762ae4c"}
+[info] i  Using project netflix-gpt-5aba2 (netflix-gpt) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-03-24T04:44:22.680Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:22.680Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:22.680Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/netflix-gpt-5aba2/billingInfo [none]
+[debug] [2025-03-24T04:44:23.520Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/netflix-gpt-5aba2/billingInfo 200
+[debug] [2025-03-24T04:44:23.521Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/netflix-gpt-5aba2/billingInfo {"name":"projects/netflix-gpt-5aba2/billingInfo","projectId":"netflix-gpt-5aba2","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-03-24T04:44:23.522Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:23.522Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:23.522Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com [none]
+[debug] [2025-03-24T04:44:23.522Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com x-goog-quota-user=projects/netflix-gpt-5aba2
+[debug] [2025-03-24T04:44:25.593Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com 200
+[debug] [2025-03-24T04:44:25.593Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com [omitted]
+[warn] !  dataconnect: missing required API sqladmin.googleapis.com. Enabling now... 
+[debug] [2025-03-24T04:44:25.594Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:25.594Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:25.595Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com:enable [none]
+[debug] [2025-03-24T04:44:25.595Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com:enable x-goog-quota-user=projects/netflix-gpt-5aba2
+[debug] [2025-03-24T04:44:27.522Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com:enable 200
+[debug] [2025-03-24T04:44:27.523Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com:enable [omitted]
+[debug] [2025-03-24T04:44:37.528Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:37.528Z] Checked if tokens are valid: true, expires at: 1742795057813
+[debug] [2025-03-24T04:44:37.528Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com [none]
+[debug] [2025-03-24T04:44:37.528Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com x-goog-quota-user=projects/netflix-gpt-5aba2
+[debug] [2025-03-24T04:44:39.397Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com 200
+[debug] [2025-03-24T04:44:39.397Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/netflix-gpt-5aba2/services/sqladmin.googleapis.com [omitted]
+[info] +  dataconnect: required API sqladmin.googleapis.com is enabled 
+[info] +  Wrote dataconnect\dataconnect.yaml 
+[info] +  Wrote dataconnect\schema\schema.gql 
+[info] +  Wrote dataconnect\connector\connector.yaml 
+[info] +  Wrote dataconnect\connector\queries.gql 
+[info] +  Wrote dataconnect\connector\mutations.gql 
+[info] +  Detected WEB app in directory D:\PROJECTS\Showly 
+[info] i  Detected react app. Enabling react generated SDKs. 

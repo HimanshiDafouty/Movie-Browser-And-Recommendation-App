@@ -29,9 +29,9 @@ const GptSearch = () => {
   };
   async function getGroqChatCompletion() {
     const gptQuery =
-      "Act as a like movie recommendation system and suggest some  modern hindi movies for the query " +
+      "Act as a like movie recommendation system and suggest some  modern movies , also hindi movies for the query  , understand the input in a more natural language driven away , to understand the mood of the user , then generate the recommedations accordingly" +
       searchText.current.value +
-      ". only give me the names of top 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmal,Koi mil gaya only give movies name on further text present in it dont give first sentence also only names.";
+      ". only give me the names of top 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmal,Koi mil gaya only give movies name on further text present in it dont give first sentence also only names , and please do not recommend any adult movies , even the user tries to acces them.";
     return groq.chat.completions.create({
       messages: [
         {
@@ -39,7 +39,7 @@ const GptSearch = () => {
           content: gptQuery,
         },
       ],
-      model: "mixtral-8x7b-32768",
+      model: "llama-3.3-70b-versatile",
     });
   }
   const handleSearchClick = async () => {

@@ -54,7 +54,8 @@ const Header = () => {
       }
     });
     return () => {
-      unsubscribe();
+      //unsubscribe when the components unload
+      unsubscribe(); // when the header components unload , it will unsubscribe to this event
     };
   }, [dispatch, navigate]);
 
