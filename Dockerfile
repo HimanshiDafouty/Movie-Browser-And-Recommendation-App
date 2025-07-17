@@ -1,0 +1,25 @@
+# Stage 1: Build React app
+FROM node:18-alpine as build
+
+WORKDIR /app
+
+# Pass env variables to React
+ARG REACT_APP_GROQ_KEY
+ENV REACT_APP_GROQ_KEY=$REACT_APP_GROQ_KEY
+
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+
+COPY . ./
+
+RUN npm run build
+
+# Stage 2: Serve app with nginx
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
